@@ -45,8 +45,6 @@ def getdefaultlabel():
                         tempminus[j] -= float(line[j + 2])
         csvfile.close()
     temp = list(map(lambda x: x[0] + x[1], zip(tempplus, tempminus)))
-    print(temp)
-    print(temp[0])
     for i in range(len(temp)):
         if temp[i] <= 0:
             temp[i] = '0'

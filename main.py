@@ -9,6 +9,11 @@ import pandas as pd
 
 def buttonOK_event():
     fileName = 'userinfo.csv'
+
+    if not os.path.exists(fileName):
+        with open(fileName, 'w', encoding='utf-8') as csvfile:
+            csvfile.close()
+
     #行頭
     field = ['Time', 'Name', 'F0', 'F1', 'F2', 'F3', 'F4', 'F5', 'F6', 'F7']
     today = str(datetime.date.today())
