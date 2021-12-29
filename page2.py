@@ -18,6 +18,14 @@ def buttonsub_event():
         '今天還可以吃\n全穀雜糧類(未精製)' + temp[0] + '碗，全穀雜糧類(其他)' + temp[1] + '碗，豆魚蛋肉類' + temp[2] + '份，乳品' +
         temp[3] + '杯\n蔬菜' + temp[4] + '份，水果' + temp[5] + '份，油脂類' + temp[6] + '茶匙，堅果種子' + temp[
             7] + '份')
+    combo0.current(0)
+    combo1.current(0)
+    combo2.current(0)
+    combo3.current(0)
+    combo4.current(0)
+    combo5.current(0)
+    combo6.current(0)
+    combo7.current(0)
 
 
 def buttontotal_event():
@@ -78,7 +86,7 @@ maintext.set(
 
 # 物件label&選單
 nums = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
-tk.Button(window, text='info', command=buttonsub_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0,0))
+tk.Button(window, text='info', command=buttonsub_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0, 0))
 tk.Label(window, textvariable=maintext, bg='pink').pack(pady=(20, 10))
 tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink').pack()
 combo0 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(未精製/碗)選單
@@ -114,8 +122,8 @@ combo7.current(0)  # 堅果種子(份)預設項目
 combo7.pack()
 
 # 按鈕
-tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event).pack(pady=(10,5))
-tk.Button(window, text='total', width='6', height='1', command=buttontotal_event).pack(pady=(0,5))
-tk.Button(window, text='exit', width='6', height='1', command=buttonexit_event).pack(pady=(0,5))
+tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event).pack(pady=(10, 5))
+tk.Button(window, text='total', width='6', height='1', command=buttontotal_event).pack(pady=(0, 5))
+tk.Button(window, text='exit', width='6', height='1', command=buttonexit_event).pack(pady=(0, 5))
 
 window.mainloop()

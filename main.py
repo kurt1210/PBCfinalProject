@@ -7,6 +7,9 @@ from firstinput import info
 import datetime
 import pandas as pd
 
+# def buttoninfo_event():
+#     import table1
+
 def buttonOK_event():
     fileName = 'userinfo.csv'
 
@@ -86,5 +89,5 @@ comboActivity.pack() #  活動強度選單位置
 
 # 按鈕
 tk.Button(window, text='OK', command=buttonOK_event).pack(pady=(10,5))
-
+# tk.Button(window, text='info', command=buttoninfo_event).pack(side=tk.LEFT, anchor=tk.SE, padx=(0,0))
 window.mainloop()
