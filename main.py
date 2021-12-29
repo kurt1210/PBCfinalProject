@@ -11,7 +11,7 @@ def buttoninfo_event():
     import table1
 
 def buttonOK_event():
-    fileName = os.path.realpath('userinfo.csv')
+    fileName = os.path.join(os.path.dirname(__file__), 'userinfo.csv')
     if not os.path.exists(fileName):
         with open(fileName, 'w', encoding='utf-8') as csvfile:
             csvfile.close()

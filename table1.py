@@ -22,7 +22,7 @@ w_box = 500
 h_box = 650
 
 # 以PIL圖像打開
-pil_image = Image.open(os.path.realpath('image1.png'))
+pil_image = Image.open(os.path.join(os.path.dirname(__file__), 'image1.png'))
 
 # 圖片的原始大小
 w, h = pil_image.size

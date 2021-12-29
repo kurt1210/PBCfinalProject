@@ -8,7 +8,7 @@ from __main__ import *
 
 currentUser = userName.get()
 today = str(datetime.date.today())
-fileName = os.path.realpath('userinfo.csv')
+fileName = os.path.join(os.path.dirname(__file__), 'userinfo.csv')
 
 
 def clearCSV():

@@ -6,7 +6,7 @@ import os
 from __main__ import *
 
 currentUser = userName.get()
-fileName = os.path.realpath('userinfo.csv')
+fileName = os.path.join(os.path.dirname(__file__), 'userinfo.csv')
 
 
 def buttonexit_event():
