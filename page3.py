@@ -51,13 +51,12 @@ def balancedornot():  # 統計各項是否均衡 #將兩類全榖雜糧和兩類
     standard = [0.0] * 6
     typeseparated = [0.0] * 6
     bgColor = []
-    with open('userinfo.csv', 'r', encoding='utf-8') as csvfile:
+    with open(fileName, 'r', encoding='utf-8') as csvfile:
         lines = csvfile.readlines()
-        print(lines)
         for i in range(1, len(lines)):
-            print(i)
             line = lines[i].split(',')
             if (line[0] == today) and (line[1] == currentUser):  # 找出標準(當天第一項)
+
                 standard[0] = float(line[2]) + float(line[3])
                 typeseparated[0] = float(totalmeal[0]) + float(totalmeal[1])
                 for j in range(4, 8):
@@ -75,7 +74,6 @@ def balancedornot():  # 統計各項是否均衡 #將兩類全榖雜糧和兩類
             else:
                 balanced.append("均衡")
                 bgColor.append('limegreen')
-        print(balanced)
         csvfile.close()
     for i in range(len(typeseparated)):
         typeseparated[i] = str(typeseparated[i])
