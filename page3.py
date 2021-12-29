@@ -15,6 +15,9 @@ def buttonagain_event():
     window.destroy()
     import main
 
+def buttonrecord_event():
+    import page4
+
 
 def getfinallabel():  # 統計整天總攝取量
     totalmeal = [0] * 8
@@ -36,6 +39,7 @@ def balancedornot():  # 統計各項是否均衡 #將兩類全榖雜糧和兩類
     balanced = []
     standard = [0.0] * 6
     typeseparated = [0.0] * 6
+    bgColor = []
     with open('userinfo.csv', 'r', encoding='utf-8') as csvfile:
         lines = csvfile.readlines()
         for i in range(1, len(lines)):
@@ -51,17 +55,20 @@ def balancedornot():  # 統計各項是否均衡 #將兩類全榖雜糧和兩類
             for j in range(6):
                 if float(typeseparated[j]) > float(standard[j]):
                     balanced.append("過量")
+                    bgColor.append('red')
                 elif float(typeseparated[j]) < float(standard[j]):
                     balanced.append("不足")
+                    bgColor.append('yellow')
                 else:
                     balanced.append("均衡")
+                    bgColor.append('limegreen')
             break
         csvfile.close()
     for i in range(len(typeseparated)):
         typeseparated[i] = str(typeseparated[i])
     for i in range(len(standard)):
         standard[i] = str(standard[i])
-    return balanced, typeseparated, standard
+    return bgColor, balanced, typeseparated, standard
 
 
 slogan = [["主食吃太多會消化不良、體重直線上升！請注意飲食均衡喲！",
@@ -98,60 +105,64 @@ def sloganchoose():
 
 # 視窗設定
 window = tk.Tk()
-window.geometry('650x600')  # 視窗大小（寬x長)
+
+window_width = 650
+window_height = 750
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+x = (screen_width / 2) - (window_width / 2)
+y = (screen_height / 2) - (window_height / 2)
+window.geometry(f'{window_width}x{window_height}+{int(x)}+{int(y)}')  # 視窗大小
 window.title('均衡飲食計算機')  # 視窗標題
 window.resizable(0, 0)  # 視窗大小可調整範圍 0=無範圍
+window.configure(bg='pink')
 
 # 物件設定
 # labelFinish初始化
 maintext = tk.StringVar()
 totalmeal = getfinallabel()
-balanced, typeseparated, standard = balancedornot()
+bgColor, balanced, typeseparated, standard = balancedornot()
 sloganlist = sloganchoose()
 # 物件label
 
-tk.Label(window, text='今天總共吃了\n').grid(column=0, row=0)
+tk.Label(window, text='今天總共吃了~', bg='pink').pack(pady=(0, 0))
 
-tk.Label(window, text='全穀雜糧類(未精製)').grid(column=0, row=2)
-tk.Label(window, text=totalmeal[0] + '碗').grid(column=1, row=2)
-tk.Label(window, text='全穀雜糧類(其他)').grid(column=0, row=3)
-tk.Label(window, text=totalmeal[1] + '碗').grid(column=1, row=3)
-tk.Label(window, text='全穀雜糧類(總計)').grid(column=0, row=4)
-tk.Label(window, text=typeseparated[0] + '碗/' + standard[0] + '碗').grid(column=1, row=4)
-tk.Label(window, text=balanced[0]).grid(column=2, row=4)
-tk.Label(window, text=sloganlist[0] + "\n").grid(column=0, columnspan=20, row=5, sticky=tk.W)
+tk.Label(window, text='全穀雜糧類(未精製) ' + totalmeal[0] + ' 碗', bg='pink').pack()
+tk.Label(window, text='全穀雜糧類(其他) ' + totalmeal[1] + ' 碗', bg='pink').pack()
+tk.Label(window, text='全穀雜糧類(總計) ' + typeseparated[0] + ' 碗/ '
+        + standard[0] + '碗', bg='pink').pack()
+tk.Label(window, text=balanced[0], bg=bgColor[0]).pack()
+tk.Label(window, text=sloganlist[0] + "\n", bg='pink').pack()
 
-tk.Label(window, text='豆魚蛋肉類').grid(column=0, row=6)
-tk.Label(window, text=totalmeal[2] + '份/' + standard[1] + '份').grid(column=1, row=6)
-tk.Label(window, text=balanced[1]).grid(column=2, row=6)
-tk.Label(window, text=sloganlist[1] + "\n").grid(column=0, columnspan=20, row=7, sticky=tk.W)
+tk.Label(window, text='豆魚蛋肉類 ' + totalmeal[2] + ' 份/'
+        + standard[1] + ' 份  ', bg='pink').pack()
+tk.Label(window, text=balanced[1], bg=bgColor[1]).pack()
+tk.Label(window, text=sloganlist[1] + "\n", bg='pink').pack()
 
-tk.Label(window, text='乳品').grid(column=0, row=8)
-tk.Label(window, text=totalmeal[3] + '杯/' + standard[2] + '杯').grid(column=1, row=8)
-tk.Label(window, text=balanced[2]).grid(column=2, row=8)
-tk.Label(window, text=sloganlist[2] + "\n").grid(column=0, columnspan=20, row=9, sticky=tk.W)
+tk.Label(window, text='乳品 ' + totalmeal[3] + ' 杯/'
+        + standard[2] + ' 杯  ', bg='pink').pack()
+tk.Label(window, text=balanced[2], bg=bgColor[2]).pack()
+tk.Label(window, text=sloganlist[2] + "\n", bg='pink').pack()
 
-tk.Label(window, text='蔬菜').grid(column=0, row=10)
-tk.Label(window, text=totalmeal[4] + '份/' + standard[3] + '份').grid(column=1, row=10)
-tk.Label(window, text=balanced[3]).grid(column=2, row=10)
-tk.Label(window, text=sloganlist[3] + "\n").grid(column=0, columnspan=20, row=11, sticky=tk.W)
+tk.Label(window, text='蔬菜 ' + totalmeal[4] +  '份/'
+        + standard[3] + ' 份  ', bg='pink').pack()
+tk.Label(window, text=balanced[3], bg=bgColor[3]).pack()
+tk.Label(window, text=sloganlist[3] + "\n", bg='pink').pack()
 
-tk.Label(window, text='水果').grid(column=0, row=12)
-tk.Label(window, text=totalmeal[5] + '份/' + standard[4] + '份').grid(column=1, row=12)
-tk.Label(window, text=balanced[4]).grid(column=2, row=12)
-tk.Label(window, text=sloganlist[4] + "\n").grid(column=0, columnspan=20, row=13, sticky=tk.W)
+tk.Label(window, text='水果 ' + totalmeal[5] + ' 份/'
+        + standard[4] + ' 份  ', bg='pink').pack()
+tk.Label(window, text=balanced[4], bg=bgColor[4]).pack()
+tk.Label(window, text=sloganlist[4] + "\n", bg='pink').pack()
 
-tk.Label(window, text='油脂類').grid(column=0, row=14)
-tk.Label(window, text=totalmeal[6] + '茶匙').grid(column=1, row=14)
-tk.Label(window, text='堅果種子').grid(column=0, row=15)
-tk.Label(window, text=totalmeal[7] + '份').grid(column=1, row=15)
-tk.Label(window, text='油脂與堅果種子類(總計)').grid(column=0, row=16)
-tk.Label(window, text=typeseparated[5] + '份/' + standard[5] + '份').grid(column=1, row=16)
-tk.Label(window, text=balanced[5]).grid(column=2, row=16)
-tk.Label(window, text=sloganlist[5] + "\n").grid(column=0, columnspan=20, row=17, sticky=tk.W)
+tk.Label(window, text='油脂類 ' + totalmeal[6] + ' 茶匙', bg='pink').pack()
+tk.Label(window, text='堅果種子 ' + totalmeal[7] + ' 份', bg='pink').pack()
+tk.Label(window, text='油脂與堅果種子類(總計) ' + typeseparated[5] + ' 份/'
+        + standard[5] + ' 份  ', bg='pink').pack()
+tk.Label(window, text=balanced[5], bg=bgColor[5]).pack()
+tk.Label(window, text=sloganlist[5] + "\n", bg='pink').pack()
 
 # 按鈕
-tk.Button(window, text='查看紀錄').grid(column=0, row=20)
-tk.Button(window, text='重新計算', command=buttonagain_event).grid(column=0, row=21)
-tk.Button(window, text='離開', command=buttonexit_event).grid(column=0, row=22)
+tk.Button(window, text='查看紀錄', width='8', height='1', command=buttonrecord_event).pack(pady=(5,5))
+tk.Button(window, text='重新計算', width='8', height='1', command=buttonagain_event).pack(pady=(0,5))
+tk.Button(window, text='離開', width='8', height='1', command=buttonexit_event).pack(pady=(0,5))
 window.mainloop()

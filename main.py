@@ -52,30 +52,39 @@ def buttonOK_event():
 
 #視窗設定
 window = tk.Tk()
-window.geometry('400x400')  # 視窗大小
+
+window_width = 400
+window_height = 400
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+x = (screen_width / 2) - (window_width / 2)
+y = (screen_height / 2) - (window_height / 2)
+window.geometry(f'{window_width}x{window_height}+{int(x)}+{int(y)}')  # 視窗大小
 window.title('均衡飲食計算機')  # 視窗標題
 window.resizable(0, 0)  # 視窗大小可調整範圍 0=無範圍
+window.configure(bg='pink')
 
 # 物件設定
-# 物件label
-tk.Label(window, text='姓名').grid(column=0, row=0) #  姓名label
-tk.Label(window, text='性別').grid(column=0, row=3) #  性別label
-tk.Label(window, text='年齡').grid(column=0, row=6) #  年齡label
-tk.Label(window, text='活動強度').grid(column=0, row=9) #  活動強度label
 # 物件本人
-entryName = tk.Entry(window,bg='dark grey') #  姓名欄
+entryName = tk.Entry(window,bg='white') #  姓名欄
 comboGender = ttk.Combobox(window, values=['男', '女'], state='readonly')  # 性別選單
 comboGender.current(0)  # 性別選單預設項目
 comboAge = ttk.Combobox(window, values=['19-30', '31-50', '51-70', '71+'], state='readonly')  # 年齡選單
 comboAge.current(0)  # 年齡選單預設項目
 comboActivity = ttk.Combobox(window, values=['低', '稍低', '適度', '高'], state='readonly')  # 活動強度選單
 comboActivity.current(0)  # 活動強度選單預設項目
+
+# 物件label&物件
+tk.Label(window, text='姓名', bg='pink').pack(pady=(75, 0)) #  姓名label
+entryName.pack() #  姓名欄位置
+tk.Label(window, text='性別', bg='pink').pack() #  性別label
+comboGender.pack() #  性別選單位置
+tk.Label(window, text='年齡', bg='pink').pack() #  年齡label
+comboAge.pack() #  年齡選單位置
+tk.Label(window, text='活動強度', bg='pink').pack() #  活動強度label
+comboActivity.pack() #  活動強度選單位置
+
 # 按鈕
-tk.Button(window, text='OK', command=buttonOK_event).grid(column=0, row=12)
-# 物件位置
-entryName.grid(column=0, row=1) #  姓名欄位置
-comboGender.grid(column=0, row=4) #  性別選單位置
-comboAge.grid(column=0, row=7) #  年齡選單位置
-comboActivity.grid(column=0, row=10) #  活動強度選單位置
+tk.Button(window, text='OK', command=buttonOK_event).pack(pady=(10,5))
 
 window.mainloop()

@@ -56,60 +56,66 @@ def getdefaultlabel():
 
 # 視窗設定
 window = tk.Tk()
-window.geometry('500x550')  # 視窗大小（寬x長)
+
+window_width = 500
+window_height = 550
+screen_width = window.winfo_screenwidth()
+screen_height = window.winfo_screenheight()
+x = (screen_width / 2) - (window_width / 2)
+y = (screen_height / 2) - (window_height / 2)
+window.geometry(f'{window_width}x{window_height}+{int(x)}+{int(y)}')  # 視窗大小（寬x長)
 window.title('均衡飲食計算機')  # 視窗標題
 window.resizable(0, 0)  # 視窗大小可調整範圍 0=無範圍
+window.configure(bg='pink')
 
 # 物件設定
 # main label初始化
 maintext = tk.StringVar()
 labellist = getdefaultlabel()
 maintext.set(
-    '今天還可以吃\n全穀雜糧類(未精製)' + labellist[0] + '碗，全穀雜糧類(其他)' + labellist[1] + '碗，豆魚蛋肉類' + labellist[2] + '份，乳品' + labellist[
+    '今天還可以吃~\n全穀雜糧類(未精製)' + labellist[0] + '碗，全穀雜糧類(其他)' + labellist[1] + '碗，豆魚蛋肉類' + labellist[2] + '份，乳品' + labellist[
         3] + '杯\n蔬菜' + labellist[4] + '份，水果' + labellist[5] + '份，油脂類' + labellist[6] + '茶匙，堅果種子' + labellist[7] + '份')
 
-# 物件label
-tk.Label(window, textvariable=maintext).grid(column=0, row=0)
-tk.Label(window, text='全穀雜糧類(未精製/碗)').grid(column=0, row=2)
-tk.Label(window, text='全穀雜糧類(其他/碗)').grid(column=0, row=4)
-tk.Label(window, text='豆魚蛋肉類(份)').grid(column=0, row=6)
-tk.Label(window, text='乳品(杯)').grid(column=0, row=8)
-tk.Label(window, text='蔬菜(份)').grid(column=0, row=10)
-tk.Label(window, text='水果(份)').grid(column=0, row=12)
-tk.Label(window, text='油脂類(茶匙)').grid(column=0, row=14)
-tk.Label(window, text='堅果種子(份)').grid(column=0, row=16)
-
-# 選單
+# 物件label&選單
 nums = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
+tk.Button(window, text='info', command=buttonsub_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0,0))
+tk.Label(window, textvariable=maintext, bg='pink').pack(pady=(20, 10))
+tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink').pack()
 combo0 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(未精製/碗)選單
 combo0.current(0)  # 全穀雜糧類(未精製/碗)預設項目
+combo0.pack()
+tk.Label(window, text='全穀雜糧類(其他/碗)', bg='pink').pack()
 combo1 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(其他/碗)選單
 combo1.current(0)  # 全穀雜糧類(其他/碗)預設項目
+combo1.pack()
+tk.Label(window, text='豆魚蛋肉類(份)', bg='pink').pack()
 combo2 = ttk.Combobox(window, values=nums, state='readonly')  # 豆魚蛋肉類(份)選單
 combo2.current(0)  # 豆魚蛋肉類(份)預設項目
+combo2.pack()
+tk.Label(window, text='乳品(杯)', bg='pink').pack()
 combo3 = ttk.Combobox(window, values=nums, state='readonly')  # 乳品(杯)選單
 combo3.current(0)  # 乳品(杯)預設項目
+combo3.pack()
+tk.Label(window, text='蔬菜(份)', bg='pink').pack()
 combo4 = ttk.Combobox(window, values=nums, state='readonly')  # 蔬菜(份)選單
 combo4.current(0)  # 蔬菜(份)預設項目
+combo4.pack()
+tk.Label(window, text='水果(份)', bg='pink').pack()
 combo5 = ttk.Combobox(window, values=nums, state='readonly')  # 水果(份)選單
 combo5.current(0)  # 水果(份)預設項目
+combo5.pack()
+tk.Label(window, text='油脂類(茶匙)', bg='pink').pack()
 combo6 = ttk.Combobox(window, values=nums, state='readonly')  # 油脂類(茶匙)選單
 combo6.current(0)  # 油脂類(茶匙)預設項目
+combo6.pack()
+tk.Label(window, text='堅果種子(份)', bg='pink').pack()
 combo7 = ttk.Combobox(window, values=nums, state='readonly')  # 堅果種子(份)選單
 combo7.current(0)  # 堅果種子(份)預設項目
+combo7.pack()
 
 # 按鈕
-tk.Button(window, text='subtotal', command=buttonsub_event).grid(column=0, row=18)
-tk.Button(window, text='total', command=buttontotal_event).grid(column=0, row=19)
-tk.Button(window, text='exit', command=buttonexit_event).grid(column=0, row=20)
+tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event).pack(pady=(10,5))
+tk.Button(window, text='total', width='6', height='1', command=buttontotal_event).pack(pady=(0,5))
+tk.Button(window, text='exit', width='6', height='1', command=buttonexit_event).pack(pady=(0,5))
 
-# 物件位置
-combo0.grid(column=0, row=3)
-combo1.grid(column=0, row=5)
-combo2.grid(column=0, row=7)
-combo3.grid(column=0, row=9)
-combo4.grid(column=0, row=11)
-combo5.grid(column=0, row=13)
-combo6.grid(column=0, row=15)
-combo7.grid(column=0, row=17)
 window.mainloop()
