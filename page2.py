@@ -7,6 +7,8 @@ import datetime
 fileName = 'userinfo.csv'
 today = str(datetime.date.today())
 
+def buttoninfo_event():
+    import table2
 
 def buttonsub_event():
     thismeal = [today, '-', combo0.get(), combo1.get(), combo2.get(), combo3.get(), combo4.get(), combo5.get(),
@@ -86,7 +88,7 @@ maintext.set(
 
 # 物件label&選單
 nums = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
-tk.Button(window, text='info', command=buttonsub_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0, 0))
+tk.Button(window, text='info', command=buttoninfo_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0, 0))
 tk.Label(window, textvariable=maintext, bg='pink').pack(pady=(20, 10))
 tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink').pack()
 combo0 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(未精製/碗)選單
