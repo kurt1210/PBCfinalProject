@@ -1,25 +1,24 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import ttk
+import os
 import pandas as pd
 import datetime
+from __main__ import *
 
-fileName = 'userinfo.csv'
+currentUser = userName.get()
+fileName = os.path.realpath('userinfo.csv')
 today = str(datetime.date.today())
 
-def buttoninfo_event():
-    import table2
 
-def buttonsub_event():
-    thismeal = [today, '-', combo0.get(), combo1.get(), combo2.get(), combo3.get(), combo4.get(), combo5.get(),
-                combo6.get(), combo7.get()]
+def putdatatocsv():
+    thismeal = [today, (currentUser + '-'), combo0.get(), combo1.get(), combo2.get(), combo3.get(), combo4.get(),
+                combo5.get(), combo6.get(), combo7.get()]
     dataframe = pd.DataFrame(data=[thismeal])
     dataframe.to_csv(fileName, mode='a', header=False, index=False)
-    temp = getdefaultlabel()
-    maintext.set(
-        '今天還可以吃\n全穀雜糧類(未精製)' + temp[0] + '碗，全穀雜糧類(其他)' + temp[1] + '碗，豆魚蛋肉類' + temp[2] + '份，乳品' +
-        temp[3] + '杯\n蔬菜' + temp[4] + '份，水果' + temp[5] + '份，油脂類' + temp[6] + '茶匙，堅果種子' + temp[
-            7] + '份')
+
+
+def combotozero():
     combo0.current(0)
     combo1.current(0)
     combo2.current(0)
@@ -30,7 +29,24 @@ def buttonsub_event():
     combo7.current(0)
 
 
+def buttoninfo_event():
+    import table2
+
+
+def buttonsub_event():
+    putdatatocsv()
+    temp = getdefaultlabel()
+    maintext.set(
+        currentUser + '你好!今天還可以吃\n全穀雜糧類(未精製)' + temp[0] + '碗，全穀雜糧類(其他)' + temp[1] + '碗，豆魚蛋肉類' + temp[2] + '份，乳品' +
+        temp[3] + '杯\n蔬菜' + temp[4] + '份，水果' + temp[5] + '份，油脂類' + temp[6] + '茶匙，堅果種子' + temp[
+            7] + '份唷')
+    combotozero()
+
+
 def buttontotal_event():
+    if (combo0.get() != '0') or (combo1.get() != '0') or (combo2.get() != '0') or (combo3.get() != '0') or (
+            combo4.get() != '0') or (combo5.get() != '0') or (combo6.get() != '0') or (combo7.get() != '0'):
+        putdatatocsv()
     window.destroy()
     import page3
 
@@ -47,7 +63,7 @@ def getdefaultlabel():
         for i in range(1, len(lines)):
             line = lines[i].split(',')
             if line[0] == today:
-                if line[1] != '-':
+                if line[1] != (currentUser + '-'):
                     for j in range(2, 10):
                         tempplus.append(float(line[j]))
                 else:
@@ -83,8 +99,9 @@ window.configure(bg='pink')
 maintext = tk.StringVar()
 labellist = getdefaultlabel()
 maintext.set(
-    '今天還可以吃~\n全穀雜糧類(未精製)' + labellist[0] + '碗，全穀雜糧類(其他)' + labellist[1] + '碗，豆魚蛋肉類' + labellist[2] + '份，乳品' + labellist[
-        3] + '杯\n蔬菜' + labellist[4] + '份，水果' + labellist[5] + '份，油脂類' + labellist[6] + '茶匙，堅果種子' + labellist[7] + '份')
+    currentUser + '你好!今天還可以吃~\n全穀雜糧類(未精製)' + labellist[0] + '碗，全穀雜糧類(其他)' + labellist[1] + '碗，豆魚蛋肉類' + labellist[
+        2] + '份，乳品' + labellist[
+        3] + '杯\n蔬菜' + labellist[4] + '份，水果' + labellist[5] + '份，油脂類' + labellist[6] + '茶匙，堅果種子' + labellist[7] + '份唷')
 
 # 物件label&選單
 nums = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
@@ -92,36 +109,29 @@ tk.Button(window, text='info', command=buttoninfo_event).pack(side=tk.LEFT, anch
 tk.Label(window, textvariable=maintext, bg='pink').pack(pady=(20, 10))
 tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink').pack()
 combo0 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(未精製/碗)選單
-combo0.current(0)  # 全穀雜糧類(未精製/碗)預設項目
 combo0.pack()
 tk.Label(window, text='全穀雜糧類(其他/碗)', bg='pink').pack()
 combo1 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(其他/碗)選單
-combo1.current(0)  # 全穀雜糧類(其他/碗)預設項目
 combo1.pack()
 tk.Label(window, text='豆魚蛋肉類(份)', bg='pink').pack()
 combo2 = ttk.Combobox(window, values=nums, state='readonly')  # 豆魚蛋肉類(份)選單
-combo2.current(0)  # 豆魚蛋肉類(份)預設項目
 combo2.pack()
 tk.Label(window, text='乳品(杯)', bg='pink').pack()
 combo3 = ttk.Combobox(window, values=nums, state='readonly')  # 乳品(杯)選單
-combo3.current(0)  # 乳品(杯)預設項目
 combo3.pack()
 tk.Label(window, text='蔬菜(份)', bg='pink').pack()
 combo4 = ttk.Combobox(window, values=nums, state='readonly')  # 蔬菜(份)選單
-combo4.current(0)  # 蔬菜(份)預設項目
 combo4.pack()
 tk.Label(window, text='水果(份)', bg='pink').pack()
 combo5 = ttk.Combobox(window, values=nums, state='readonly')  # 水果(份)選單
-combo5.current(0)  # 水果(份)預設項目
 combo5.pack()
 tk.Label(window, text='油脂類(茶匙)', bg='pink').pack()
 combo6 = ttk.Combobox(window, values=nums, state='readonly')  # 油脂類(茶匙)選單
-combo6.current(0)  # 油脂類(茶匙)預設項目
 combo6.pack()
 tk.Label(window, text='堅果種子(份)', bg='pink').pack()
 combo7 = ttk.Combobox(window, values=nums, state='readonly')  # 堅果種子(份)選單
-combo7.current(0)  # 堅果種子(份)預設項目
 combo7.pack()
+combotozero()
 
 # 按鈕
 tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event).pack(pady=(10, 5))

@@ -4,6 +4,7 @@
 import io
 from PIL import Image, ImageTk
 import tkinter as tk
+import os
 
 
 def resize(w, h, w_box, h_box, pil_image):
@@ -15,13 +16,13 @@ def resize(w, h, w_box, h_box, pil_image):
     return pil_image.resize((width, height), Image.ANTIALIAS)
 
 
-root = tk.Tk()
+window = tk.Toplevel()
 # 框的大小
 w_box = 500
 h_box = 650
 
 # 以PIL圖像打開
-pil_image = Image.open("~/Users/kurt/PycharmProjects/PBCfinalProject/生活活動強度.png")
+pil_image = Image.open(os.path.realpath('image1.png'))
 
 # 圖片的原始大小
 w, h = pil_image.size
@@ -32,6 +33,6 @@ pil_image_resized = resize(w, h, w_box, h_box, pil_image)
 # 把PIL圖像轉為Tkinter的PhotoImage
 tk_image = ImageTk.PhotoImage(pil_image_resized)
 
-label = tk.Label(root, image=tk_image, width=w_box, height=h_box)
+label = tk.Label(window, image=tk_image, width=w_box, height=h_box)
 label.pack(padx=5, pady=5)  # 圖與邊緣的距離
-root.mainloop()
+window.mainloop()
