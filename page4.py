@@ -39,8 +39,8 @@ def findrecord():
 
 # 視窗設定
 window = tk.Tk()
-window_width = 650
-window_height = 350
+window_width = 700
+window_height = 400
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
 x = (screen_width / 2) - (window_width / 2)
