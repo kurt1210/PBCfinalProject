@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import ttk
+import tkinter.font as tkFont
 import os
 import pandas as pd
 import datetime
@@ -104,38 +105,40 @@ maintext.set(
         3] + '杯\n蔬菜' + labellist[4] + '份，水果' + labellist[5] + '份，油脂類' + labellist[6] + '茶匙，堅果種子' + labellist[7] + '份唷')
 
 # 物件label&選單
+font1 = tkFont.Font(family='Arial', size=9)
+
 nums = [0, 0.5, 1, 1.5, 2, 2.5, 3, 3.5, 4, 4.5, 5, 5.5, 6, 6.5, 7, 7.5, 8, 8.5, 9, 9.5, 10]
-tk.Button(window, text='info', command=buttoninfo_event).pack(side=tk.LEFT, anchor=tk.NW, padx=(0, 0))
-tk.Label(window, textvariable=maintext, bg='pink').pack(pady=(20, 10))
-tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink').pack()
+tk.Button(window, text='info', command=buttoninfo_event, font=font1).pack(side=tk.LEFT, anchor=tk.NW, padx=(0, 0))
+tk.Label(window, textvariable=maintext, bg='pink', font=font1).pack(pady=(20, 10))
+tk.Label(window, text='全穀雜糧類(未精製/碗)', bg='pink', font=font1).pack()
 combo0 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(未精製/碗)選單
 combo0.pack()
-tk.Label(window, text='全穀雜糧類(其他/碗)', bg='pink').pack()
+tk.Label(window, text='全穀雜糧類(其他/碗)', bg='pink', font=font1).pack()
 combo1 = ttk.Combobox(window, values=nums, state='readonly')  # 全穀雜糧類(其他/碗)選單
 combo1.pack()
-tk.Label(window, text='豆魚蛋肉類(份)', bg='pink').pack()
+tk.Label(window, text='豆魚蛋肉類(份)', bg='pink', font=font1).pack()
 combo2 = ttk.Combobox(window, values=nums, state='readonly')  # 豆魚蛋肉類(份)選單
 combo2.pack()
-tk.Label(window, text='乳品(杯)', bg='pink').pack()
+tk.Label(window, text='乳品(杯)', bg='pink', font=font1).pack()
 combo3 = ttk.Combobox(window, values=nums, state='readonly')  # 乳品(杯)選單
 combo3.pack()
-tk.Label(window, text='蔬菜(份)', bg='pink').pack()
+tk.Label(window, text='蔬菜(份)', bg='pink', font=font1).pack()
 combo4 = ttk.Combobox(window, values=nums, state='readonly')  # 蔬菜(份)選單
 combo4.pack()
-tk.Label(window, text='水果(份)', bg='pink').pack()
+tk.Label(window, text='水果(份)', bg='pink', font=font1).pack()
 combo5 = ttk.Combobox(window, values=nums, state='readonly')  # 水果(份)選單
 combo5.pack()
-tk.Label(window, text='油脂類(茶匙)', bg='pink').pack()
+tk.Label(window, text='油脂類(茶匙)', bg='pink', font=font1).pack()
 combo6 = ttk.Combobox(window, values=nums, state='readonly')  # 油脂類(茶匙)選單
 combo6.pack()
-tk.Label(window, text='堅果種子(份)', bg='pink').pack()
+tk.Label(window, text='堅果種子(份)', bg='pink', font=font1).pack()
 combo7 = ttk.Combobox(window, values=nums, state='readonly')  # 堅果種子(份)選單
 combo7.pack()
 combotozero()
 
 # 按鈕
-tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event).pack(pady=(10, 5))
-tk.Button(window, text='total', width='6', height='1', command=buttontotal_event).pack(pady=(0, 5))
-tk.Button(window, text='exit', width='6', height='1', command=buttonexit_event).pack(pady=(0, 5))
+tk.Button(window, text='subtotal', width='6', height='1', command=buttonsub_event, font=font1).pack(pady=(10, 5))
+tk.Button(window, text='total', width='6', height='1', command=buttontotal_event, font=font1).pack(pady=(0, 5))
+tk.Button(window, text='exit', width='6', height='1', command=buttonexit_event, font=font1).pack(pady=(0, 5))
 
 window.mainloop()

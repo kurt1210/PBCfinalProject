@@ -3,6 +3,7 @@ import tkinter as tk
 import csv
 import datetime
 import os
+import tkinter.font as tkFont
 import pandas as pd
 from __main__ import *
 
@@ -135,45 +136,47 @@ totalmeal = getfinallabel()
 bgColor, balanced, typeseparated, standard = balancedornot()
 sloganlist = sloganchoose()
 # 物件label
+font1 = tkFont.Font(family='Arial', size=10)  # family:字型；slant:斜體；weight:粗體
+font2 = tkFont.Font(family='Courier', size=12, slant='italic', weight='bold')
+font3 = tkFont.Font(family='Courier', size=10, slant='italic', weight='bold')
 
-tk.Label(window, text='你今天總共吃了~', bg='pink').pack(pady=(0, 0))
-
-tk.Label(window, text='全穀雜糧類(未精製) ' + totalmeal[0] + ' 碗', bg='pink').pack()
-tk.Label(window, text='全穀雜糧類(其他) ' + totalmeal[1] + ' 碗', bg='pink').pack()
+tk.Label(window, text='你今天總共吃了~', bg='pink', font=font1).pack(pady=(0, 0))
+tk.Label(window, text='全穀雜糧類(未精製) ' + totalmeal[0] + ' 碗', bg='pink', font=font1).pack()
+tk.Label(window, text='全穀雜糧類(其他) ' + totalmeal[1] + ' 碗', bg='pink', font=font1).pack()
 tk.Label(window, text='全穀雜糧類(總計) ' + typeseparated[0] + ' 碗/ '
-                      + standard[0] + '碗', bg='pink').pack()
-tk.Label(window, text=balanced[0], bg=bgColor[0]).pack()
-tk.Label(window, text=sloganlist[0] + "\n", bg='pink').pack()
+                      + standard[0] + '碗', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[0], bg=bgColor[0], font=font3).pack()
+tk.Label(window, text=sloganlist[0] + "\n", bg='pink', font=font2).pack()
 
 tk.Label(window, text='豆魚蛋肉類 ' + totalmeal[2] + ' 份/'
-                      + standard[1] + ' 份  ', bg='pink').pack()
-tk.Label(window, text=balanced[1], bg=bgColor[1]).pack()
-tk.Label(window, text=sloganlist[1] + "\n", bg='pink').pack()
+                      + standard[1] + ' 份  ', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[1], bg=bgColor[1], font=font3).pack()
+tk.Label(window, text=sloganlist[1] + "\n", bg='pink', font=font2).pack()
 
 tk.Label(window, text='乳品 ' + totalmeal[3] + ' 杯/'
-                      + standard[2] + ' 杯  ', bg='pink').pack()
-tk.Label(window, text=balanced[2], bg=bgColor[2]).pack()
-tk.Label(window, text=sloganlist[2] + "\n", bg='pink').pack()
+                      + standard[2] + ' 杯  ', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[2], bg=bgColor[2], font=font3).pack()
+tk.Label(window, text=sloganlist[2] + "\n", bg='pink', font=font2).pack()
 
 tk.Label(window, text='蔬菜 ' + totalmeal[4] + '份/'
-                      + standard[3] + ' 份  ', bg='pink').pack()
-tk.Label(window, text=balanced[3], bg=bgColor[3]).pack()
-tk.Label(window, text=sloganlist[3] + "\n", bg='pink').pack()
+                      + standard[3] + ' 份  ', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[3], bg=bgColor[3], font=font3).pack()
+tk.Label(window, text=sloganlist[3] + "\n", bg='pink', font=font2).pack()
 
 tk.Label(window, text='水果 ' + totalmeal[5] + ' 份/'
-                      + standard[4] + ' 份  ', bg='pink').pack()
-tk.Label(window, text=balanced[4], bg=bgColor[4]).pack()
-tk.Label(window, text=sloganlist[4] + "\n", bg='pink').pack()
+                      + standard[4] + ' 份  ', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[4], bg=bgColor[4], font=font3).pack()
+tk.Label(window, text=sloganlist[4] + "\n", bg='pink', font=font2).pack()
 
-tk.Label(window, text='油脂類 ' + totalmeal[6] + ' 茶匙', bg='pink').pack()
-tk.Label(window, text='堅果種子 ' + totalmeal[7] + ' 份', bg='pink').pack()
+tk.Label(window, text='油脂類 ' + totalmeal[6] + ' 茶匙', bg='pink', font=font1).pack()
+tk.Label(window, text='堅果種子 ' + totalmeal[7] + ' 份', bg='pink', font=font1).pack()
 tk.Label(window, text='油脂與堅果種子類(總計) ' + typeseparated[5] + ' 份/'
-                      + standard[5] + ' 份  ', bg='pink').pack()
-tk.Label(window, text=balanced[5], bg=bgColor[5]).pack()
-tk.Label(window, text=sloganlist[5] + "\n", bg='pink').pack()
+                      + standard[5] + ' 份  ', bg='pink', font=font1).pack()
+tk.Label(window, text=balanced[5], bg=bgColor[5], font=font3).pack()
+tk.Label(window, text=sloganlist[5] + "\n", bg='pink', font=font2).pack()
 
 # 按鈕
-tk.Button(window, text='查看紀錄', width='8', height='1', command=buttonrecord_event).pack(pady=(5, 5))
-tk.Button(window, text='重新計算', width='8', height='1', command=buttonagain_event).pack(pady=(0, 5))
-tk.Button(window, text='離開', width='8', height='1', command=buttonexit_event).pack(pady=(0, 5))
+tk.Button(window, text='查看紀錄', width='8', height='1', command=buttonrecord_event, font=font1).pack(pady=(5, 5))
+tk.Button(window, text='重新計算', width='8', height='1', command=buttonagain_event, font=font1).pack(pady=(0, 5))
+tk.Button(window, text='離開', width='8', height='1', command=buttonexit_event, font=font1).pack(pady=(0, 5))
 window.mainloop()

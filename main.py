@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
 from tkinter import ttk
+import tkinter.font as tkFont
 import csv
 import os
 import datetime
@@ -70,8 +71,9 @@ window.configure(bg='pink')
 
 # 物件設定
 # 物件本人
+font1 = tkFont.Font(family='Arial', size=10)
 userName = tk.StringVar()
-entryName = tk.Entry(window, textvariable=userName, bg='white') #  姓名欄
+entryName = tk.Entry(window, textvariable=userName, bg='white', font=font1) #  姓名欄
 comboGender = ttk.Combobox(window, values=['男', '女'], state='readonly')  # 性別選單
 comboGender.current(0)  # 性別選單預設項目
 comboAge = ttk.Combobox(window, values=['19-30', '31-50', '51-70', '71+'], state='readonly')  # 年齡選單
@@ -80,16 +82,16 @@ comboActivity = ttk.Combobox(window, values=['低', '稍低', '適度', '高'], 
 comboActivity.current(0)  # 活動強度選單預設項目
 
 # 物件label&物件
-tk.Label(window, text='姓名', bg='pink').pack(pady=(75, 0)) #  姓名label
+tk.Label(window, text='姓名', bg='pink', font=font1).pack(pady=(75, 0)) #  姓名label
 entryName.pack() #  姓名欄位置
-tk.Label(window, text='性別', bg='pink').pack() #  性別label
+tk.Label(window, text='性別', bg='pink', font=font1).pack() #  性別label
 comboGender.pack() #  性別選單位置
-tk.Label(window, text='年齡', bg='pink').pack() #  年齡label
+tk.Label(window, text='年齡', bg='pink', font=font1).pack() #  年齡label
 comboAge.pack() #  年齡選單位置
-tk.Label(window, text='活動強度', bg='pink').pack() #  活動強度label
+tk.Label(window, text='活動強度', bg='pink', font=font1).pack() #  活動強度label
 comboActivity.pack() #  活動強度選單位置
 
 # 按鈕
-tk.Button(window, text='OK', command=buttonOK_event).pack(pady=(10,5))
+tk.Button(window, text='OK', command=buttonOK_event, font=font1).pack(pady=(10,5))
 tk.Button(window, text='info', command=buttoninfo_event).pack(side=tk.LEFT, anchor=tk.SE, padx=(0,0))
 window.mainloop()

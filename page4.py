@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 import tkinter as tk
+import tkinter.font as tkFont
 import csv
 import datetime
 import os
@@ -49,7 +50,9 @@ window.title('均衡飲食計算機')  # 視窗標題
 window.resizable(0, 0)  # 視窗大小可調整範圍 0=無範圍
 window.configure(bg='pink')
 
-tk.Label(window, text=findrecord(), bg='pink').pack(pady=(20, 10))
-tk.Button(window, text='關閉', width='8', height='1', command=buttonexit_event).pack(pady=(0, 5))
+# 物件設定
+font1 = tkFont.Font(family='Arial', size=10)
+tk.Label(window, text=findrecord(), bg='pink', font=font1).pack(pady=(20, 10))
+tk.Button(window, text='關閉', width='8', height='1', command=buttonexit_event, font=font1).pack(pady=(0, 5))
 
 window.mainloop()
