@@ -5,6 +5,7 @@ import tkinter.font as tkFont
 import os
 import pandas as pd
 import datetime
+import table2 as t2
 from __main__ import *
 
 currentUser = userName.get()
@@ -31,7 +32,7 @@ def combotozero():
 
 
 def buttoninfo_event():
-    import table2
+    t2.table2()
 
 
 def buttonsub_event():
@@ -50,6 +51,7 @@ def buttontotal_event():
         putdatatocsv()
     window.destroy()
     import page3
+
 
 
 def buttonexit_event():

@@ -7,9 +7,10 @@ import os
 import datetime
 import pandas as pd
 from firstinput import info
+import table1 as t1
 
 def buttoninfo_event():
-    import table1
+    t1.table1()
 
 def buttonOK_event():
     fileName = os.path.join(os.path.dirname(__file__), 'userinfo.csv')
