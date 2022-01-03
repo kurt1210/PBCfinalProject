@@ -39,7 +39,7 @@ def findrecord():
 
 # 視窗設定
 window = tk.Tk()
-window_width = 800
+window_width = 830
 window_height = 400
 screen_width = window.winfo_screenwidth()
 screen_height = window.winfo_screenheight()
@@ -51,7 +51,7 @@ window.resizable(0, 0)  # 視窗大小可調整範圍 0=無範圍
 window.configure(bg='pink')
 
 # 物件設定
-font1 = tkFont.Font(family='Arial', size=10)
+font1 = tkFont.Font(family='Arial', size=9)
 tk.Label(window, text=findrecord(), bg='pink', font=font1).pack(pady=(20, 10))
 tk.Button(window, text='關閉', width='8', height='1', command=buttonexit_event, font=font1).pack(pady=(0, 5))
 
